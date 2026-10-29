@@ -9,3 +9,5 @@ app = FastAPI(title="Gym Progress API")
 @app.get("/")
 def root():
     return {"status": "ok"}
+
+
