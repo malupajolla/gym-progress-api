@@ -23,25 +23,29 @@ async function listarExercicios() {
 }
 
 document.getElementById("form-exercicio").addEventListener("submit", async (evento) => {
-  evento.preventDefault(); // impede a página de recarregar
+  evento.preventDefault(); 
 
-   
-  const nome = document.getElementById("???").value;
-  const grupo = ???;
+ document.getElementById("form-exercicio").addEventListener("submit", async (evento) => {
+  evento.preventDefault(); 
+
+  
+  const nome = document.getElementById("nome").value;
+  const grupo = document.getElementById("grupo").value;
 
   
   const resposta = await fetch(API, {
-    method: "???",
-    headers: { "Content-Type": "???" },
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
       nome: nome,
-      grupo_muscular: ???
+      grupo_muscular: grupo
     })
   });
 
-
+ 
   evento.target.reset();
-  ???
+  listarExercicios();
+});
 });
 
 listarExercicios();
