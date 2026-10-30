@@ -22,14 +22,26 @@ async function listarExercicios() {
   }
 }
 
-// DESAFIO: enviar o formulário como POST para a API
 document.getElementById("form-exercicio").addEventListener("submit", async (evento) => {
   evento.preventDefault(); // impede a página de recarregar
 
-  // 1. pegar os valores dos inputs #nome e #grupo
-  // 2. fetch(API, { method: "POST", headers: ..., body: JSON.stringify(...) })
-  //    dica: o body precisa ter o mesmo formato do ExercicioCreate do Swagger
-  // 3. limpar o formulário e chamar listarExercicios() de novo
+   
+  const nome = document.getElementById("???").value;
+  const grupo = ???;
+
+  
+  const resposta = await fetch(API, {
+    method: "???",
+    headers: { "Content-Type": "???" },
+    body: JSON.stringify({
+      nome: nome,
+      grupo_muscular: ???
+    })
+  });
+
+
+  evento.target.reset();
+  ???
 });
 
 listarExercicios();
