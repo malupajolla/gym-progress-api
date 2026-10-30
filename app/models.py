@@ -28,4 +28,26 @@ class Exercicio(Base):
 class Treino(Base):
     __tablename__ = "treinos"
 
-    id: Mapped[int] =
+    id: Mapped[int] = mapped_column(primary_key=True)
+    data: Mapped[date]
+    observacao: Mapped[str | None] = mapped_column(String(255))
+    usuario_id: Mapped[int] = mapped_column(ForeignKey("usuarios.id"))
+
+    usuario: Mapped["Usuario"] = relationship(back_populates="treinos")
+    series: Mapped[list["Serie"]] = relationship(
+        back_populates="treino", cascade="all, delete-orphan"
+    )
+
+
+class Serie(Base):
+    __tablename__ = "series"
+
+    id: Mapped[int] = mapped_column(primary_key=True)
+    treino_id: Mapped[int] = mapped_column(ForeignKey("treinos.id"))
+    exercicio_id: Mapped[int] = mapped_column(ForeignKey("exercicios.id"))
+    carga: Mapped[float]
+    repeticoes: Mapped[int]
+    ordem: Mapped[int]
+
+    treino: Mapped["Treino"] = relationship(back_populates="series")
+    exercicio: Mapped["Exercicio"] = relationship(back_populates="series")
